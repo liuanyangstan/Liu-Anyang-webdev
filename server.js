@@ -13,4 +13,4 @@ var port      = 3000;
 app.use(express.static(__dirname+'/public'));
 app.listen(port, ipaddress);
 
-console.log("hello world!");
+console.log("hello world, well done!");
