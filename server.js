@@ -9,7 +9,7 @@ var express = require('express');
 var app = express();
 
 var ipaddress = '127.0.0.1';                    //local host: fixed
-var port      = process.env.PORI || 3000;
+var port      = process.env.PORI || 5000;
 
 app.use(express.static(__dirname+'/public/assignment'));   //folder name : public
 app.listen(port, ipaddress);
