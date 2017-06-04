@@ -3,7 +3,7 @@
  */
 //using express with node js
 var express = require('express');
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 //initialize app as an express application
 var app = express();
