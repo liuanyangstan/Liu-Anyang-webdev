@@ -1,62 +1,46 @@
-module.exports = function(app)
-{
-    app.get("/api/test", findAllMessages);
-    app.post("/api/test", createMessage);
-    app.delete("/api/test/:id", deleteMessage);
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-    var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
-    if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
-        var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-        var password = process.env.MLAB_PASSWORD_WEBDEV;
-        connectionString = 'mongodb://' + username + ':' + password;
-        connectionString += '@ds137891.mlab.com:37891/heroku_kn9tg11s'; // user yours
-    }
+var index = require('./routes/index');
+var users = require('./routes/users');
 
-    var mongoose = require("mongoose");
-    mongoose.connect(connectionString);
+var app = express();
 
-    var TestSchema = mongoose.Schema({
-        message: String
-    });
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-    var TestModel = mongoose.model("TestModel", TestSchema);
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-    function findAllMessages(req, res) {
-        TestModel
-            .find()
-            .then(
-                function(tests) {
-                    res.json(tests);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
-    }
+app.use('/', index);
+app.use('/users', users);
 
-    function createMessage(req, res) {
-        TestModel
-            .create(req.body)
-            .then(
-                function(test) {
-                    res.json(test);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
-    }
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-    function deleteMessage(req, res) {
-        TestModel
-            .remove({_id: req.params.id})
-            .then(
-                function(result) {
-                    res.json(result);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
-    }
-};
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
