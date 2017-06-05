@@ -5,20 +5,33 @@
 
 
 var express = require('express');
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 
 //initialize app as an express application
 var app = express();
 
-var ipaddress = '127.0.0.1';                    //local host: fixed
-var port      = process.env.PORI || 5000;
+//var ipaddress = '127.0.0.1';
+//var port      = process.env.PORI || 5000;
 
-app.use(express.static(__dirname+'/public/assignment'));   //folder name : public
-app.listen(port, ipaddress);
+//app.use(express.static(__dirname+'/public/assignment'));
+//app.listen(port, ipaddress);
 
-app.listen(port);
+//app.listen(port);
 
-console.log("hello world!");
+//console.log("hello world!");
+
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname+'/public/assignment'));
+
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
+
+
+
+
+
+
 
 
 /**
