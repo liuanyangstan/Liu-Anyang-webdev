@@ -10,10 +10,6 @@ var express = require('express');
 //initialize app as an express application
 var app = express();
 
-app.get('/test', function (req, res) {
-    res.send('Text information received')
-});
-
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public/assignment'));
 
