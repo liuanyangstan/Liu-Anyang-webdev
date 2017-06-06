@@ -18,6 +18,10 @@ app.listen(app.get('port'), function () {
 });
 
 
+app.get('/test', function (req, res) {
+    res.send('Text information received')
+});
+
 /**
  var express = require('express');
  var app = express();
