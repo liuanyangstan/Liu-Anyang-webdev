@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left" style="margin-left: 0px;">
+            <a class="navbar-link" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="cl-text-white navbar-brand cl-text-bold">
+            Create Widget
+        </a>
+        <a ng-click="model.createWidget(model.widget.size, model.widget.width, model.widget.text, model.widget.url)"
+           class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div ng-switch="model.widgetType">
+    <div ng-switch-when="HEADER">
+        <div ng-include="'views/widget/editors/widget-heading-edit.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <div ng-include="'views/widget/editors/widget-image-edit.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include="'views/widget/editors/widget-youtube-edit.view.client.html'"></div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
