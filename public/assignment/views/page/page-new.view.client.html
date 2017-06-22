@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left" style="margin-left: 0px;">
+            <a class="navbar-link" href="#!/user/{{model.uid}}/website/{{model.wid}}/page/">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="cl-text-white navbar-brand cl-text-bold">
+            New Page
+        </a>
+        <a ng-click="model.createPage(model)"
+           class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form class="cl-form-bottom-padding">
+        <label for="name">Name</label>
+        <input class="form-control"
+               placeholder="Page Name"
+               ng-model="model.name"
+               id="name"/>
+
+        <label for="description">Description</label>
+        <input class="form-control"
+               placeholder="Page Title"
+               ng-model="model.description"
+               id="description"/>
+
+    </form>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="#!/user/{{model.uid}}" class="navbar-link navbar-text pull-right cl-icon-padding">
+            <span class="cl-text-blue glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
