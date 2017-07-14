@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../vendor/jquery-ui.css" rel="stylesheet"/>
+    <script src="../vendor/jquery.js"></script>
+    <script src="../vendor/jquery-ui.js"></script>
+    <meta charset="UTF-8">
+    <title>Sortable</title>
+
+    <script>
+        $(function () {
+            var ul = $("ul");
+            console.log(ul);
+            var li = $("<li>Item 123</li>");
+            ul.append(li);
+            ul.append("<li>Item 234</li>");
+            ul.sortable();
+
+
+            $(".widgets").sortable();
+        });
+    </script>
+
+</head>
+<body>
+<h1>Sortable</h1>
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ul>
+
+<div class="widgets">
+    <div class="youtube">
+        <h2>YouTube</h2>
+    </div>
+    <div class="image">
+        <div>Image Widget</div>
+    </div>
+</div>
+
+</body>
+</html>
