@@ -8,14 +8,31 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
 
-    function PageListController($routeParams, PageService) {
+    function PageListController($routeParams, WebsiteService ,PageService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
-        vm.pages = PageService.findPageByWebsiteId(vm.wid);
+        
+        
+        function init() {
+            // WebsiteService
+            //     .findWebsitesByUser(vm.uid)
+            //     .then(function (website) {
+            //         vm.website = website;
+            //     });
+
+            PageService
+                .findPageByWebsiteId(vm.wid)
+                .then(function (pages) {
+                    vm.pages = pages;
+                })
+            
+        }
+
+        init();
     }
 
-    function NewPageController($routeParams, WebsiteService, PageService, $location) {
+    function NewPageController($routeParams, PageService, $location) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -24,18 +41,47 @@
         vm.createPage = createPage;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.wid);
+            // WebsiteService
+            //     .findWebsitesByUser(vm.uid)
+            //     .then(function (website) {
+            //         vm.website = website;
+            //     });
+
+            PageService
+                .findPageByWebsiteId(vm.wid)
+                .then(function (pages) {
+                    vm.pages = pages;
+                })
+
         }
+
         init();
 
         //implementation
-        function createPage(page) {
-            PageService.createPage(vm.wid, page);
-            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+        function createPage(name, description) {
+            if(!(name)) {
+                vm.error = "Not a valid page name"
+            } else {
+                var newPage = {
+                    name: name,
+                    description: description
+                };
+                PageService
+                    .createPage(vm.wid, newPage)
+                    .then(
+                        function (response) {
+                            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                        },
+                        function (error) {
+                            vm.error = "Failed to create";
+                        }
+                    );
+            }
         }
+
     }
 
-    function EditPageController($routeParams, PageService, $location) {
+    function EditPageController($routeParams, WebsiteService, PageService, $location) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -45,21 +91,48 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.wid);
-            vm.page = PageService.findPageById(vm.pid);
-        }
-        init();
+        WebsiteService
+            .findWebsitesByUser(vm.uid)
+            .then(function (website) {
+                vm.website = website;
+            });
+
+        PageService
+            .findPageById(vm.pid)
+            .then(function (page) {
+                vm.page = page;
+            });
 
         //implementation
         function updatePage(page) {
-            PageService.updatePage(vm.pid, page);
-            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+            if(!page || !page.name) {
+                vm.error = "Page name is required!";
+            } else {
+                PageService
+                    .updatePage(vm.pid, page)
+                    .then(
+                        function (response) {
+                            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                        },
+                        function (error) {
+                            vm.error = "Cannot update the page!";
+                        }
+                    );
+            }
         }
 
         function deletePage(pageId) {
-            PageService.deletePage(pageId);
-            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+
+            PageService
+                .deletePage(pageId)
+                .then(
+                    function (response) {
+                        $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                    },
+                    function (error) {
+                        vm.error = "Unable to delete!";
+                    }
+                );
         }
     }
 

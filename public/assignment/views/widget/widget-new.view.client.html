@@ -8,7 +8,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold">
             Create Widget
         </a>
-        <a ng-click="model.createWidget(model.widget.size, model.widget.width, model.widget.text, model.widget.url)"
+        <a ng-click="model.createWidget()"
            class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -16,7 +16,7 @@
 </nav>
 
 <div ng-switch="model.widgetType">
-    <div ng-switch-when="HEADER">
+    <div ng-switch-when="HEADING">
         <div ng-include="'views/widget/editors/widget-heading-edit.view.client.html'"></div>
     </div>
     <div ng-switch-when="IMAGE">

@@ -8,7 +8,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold">
             New Page
         </a>
-        <a ng-click="model.createPage(model)"
+        <a ng-click="model.createPage(model.name, model.description)"
            class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -18,6 +18,9 @@
 <div class="container">
 
     <form class="cl-form-bottom-padding">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <label for="name">Name</label>
         <input class="form-control"
                placeholder="Page Name"

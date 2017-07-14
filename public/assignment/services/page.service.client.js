@@ -6,79 +6,55 @@
         .module("WebAppMaker")
         .factory('PageService', PageService);
 
-    function PageService() {
-        var pages = [
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-
-        ];
+    function PageService($http) {
 
         var services = {
             'createPage': createPage,
             'findPageByWebsiteId': findPageByWebsiteId,
             'findPageById': findPageById,
             'updatePage': updatePage,
-            'deletePage': deletePage,
+            'deletePage': deletePage
         };
         return services;
 
-        function getNextId() {
-            function getMaxId(maxId, currentId) {
-                var current = parseInt(currentId._id);
-                if (maxId > current) {
-                    return maxId;
-                } else {
-                    return current + 1;
-                }
-            }
-
-            return pages.reduce(getMaxId, 0).toString();
-        }
-
         function createPage(websiteId, page) {
-            var newPageId = getNextId();
-            var newPage = {
-                _id: newPageId,
-                name: page.name,
-                description: page.description,
-                websiteId: websiteId
-            };
-            pages.push(newPage);
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.post(url, page)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findPageByWebsiteId(websiteId) {
-            result = [];
-            for (p in pages) {
-                var page = pages[p];
-                if (parseInt(page.websiteId) === parseInt(websiteId)) {
-                    result.push(page);
-                }
-            }
-            return result;
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findPageById(pageId) {
-            for (p in pages) {
-                var page = pages[p];
-                if (parseInt(page._id) === parseInt(pageId)) {
-                    return page;
-                }
-            }
-            return null;
+            var url = "/api/page/" + pageId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function updatePage(pageId, page) {
-            var oldPage = findPageById(pageId);
-            var index = pages.indexOf(oldPage);
-            pages[index].name = page.name;
-            pages[index].desc = page.desc;
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function deletePage(pageId) {
-            var oldPage = findPageById(pageId);
-            var index = pages.indexOf(oldPage);
-            pages.splice(index, 1);
+            var url = "/api/page/" + pageId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
     }
