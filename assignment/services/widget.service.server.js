@@ -18,10 +18,6 @@ module.exports = function(app){
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
-    // var widgetTypes = [
-    //     "HEADING", "IMAGE", "YOUTUBE"
-    // ];
-
     //POST Calls.
     app.post('/api/page/:pageId/widget', createWidget);
     app.post ('/api/upload', upload.single('myFile'), uploadImage);
@@ -98,6 +94,19 @@ module.exports = function(app){
         var mimetype = myFile.mimetype;
 
         widget = findWidgetById(widgetId);
+        if(!widget) {
+             widget = {
+                _id: new Date().getTime().toString(),
+                widgetType: 'IMAGE',
+                pageId: pageId,
+                size: size,
+                text: '',
+                name: '',
+                width: width
+             };
+            widgets.push(widget);
+        }
+
         widget.url = '/uploads/' + filename;
 
         function findWidgetById(widgetId) {
