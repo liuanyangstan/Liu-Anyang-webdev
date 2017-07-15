@@ -50,7 +50,7 @@
                         });
 
                         $.post(
-                            '/api/assignment/page/' + pageId + '/widget/order',
+                            '/api/page/' + pageId + '/widget/order',
                             {elems: elemOrder}
                         );
                     }

@@ -193,8 +193,6 @@
                 url: vm.widgetUrl
             };
 
-            // console.log(latestData);
-
             WidgetService
                 .updateWidget(vm.wgid, latestData)
                 .then(function () {

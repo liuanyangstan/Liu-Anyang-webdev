@@ -44,6 +44,7 @@ module.exports = function(app){
     function reOrderWidget(req, res) {
         const pageId = req.params['pageId'];
         const newOrder = req.body.elems;
+        // console.log(newOrder);
         for(var i in newOrder) {
             for(var j in widgets) {
                 if(widgets[j]._id === newOrder[i]) {
@@ -99,24 +100,17 @@ module.exports = function(app){
         widget = findWidgetById(widgetId);
         widget.url = '/uploads/' + filename;
 
-        var callbackUrl = "/#!/user/456/website/456/page/321/widget/345";
-        // console.log(userId);
-        // console.log(websiteId);
-        // console.log(pageId);
-        // console.log(widgetId);
-
         function findWidgetById(widgetId) {
             var widget = widgets.find(function (wi) {
                 return wi._id == widgetId;
             });
 
             if(widget) {
-                widgets.push(widget);
+                return widget;
             }
-            return widget;
         }
 
-        // var callbackUrl = "/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/";
+        var callbackUrl = "/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/";
         res.redirect(callbackUrl);
 
     }
@@ -126,7 +120,7 @@ module.exports = function(app){
         var widget = req.body;
 
         var newWidget = {
-            _id: new Date().getTime(),
+            _id: new Date().getTime().toString(),
             widgetType: widget.widgetType,
             pageId: pid,
             size: widget.size,
@@ -172,9 +166,10 @@ module.exports = function(app){
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params.widgetId;
-
         for(wi in widgets) {
-            if(widgetId === widgets[wi]._id) {
+            var wid = widgets[wi]._id
+            console.log('wid', wid, 'eq', wid === widgetId, typeof widgetId, typeof wid);
+            if(widgetId === wid) {
                 widgets[wi].size = widget.size;
                 widgets[wi].text = widget.text;
                 widgets[wi].width = widget.width;
