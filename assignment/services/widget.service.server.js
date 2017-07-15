@@ -34,23 +34,9 @@ module.exports = function(app){
 
     //Sort
     app.put('/api/page/:pageId/widget', sortWidget);
-    // app.post('/api/page/:pageId/widget/order', reOrderWidget);
 
 
-    // function reOrderWidget(req, res) {
-    //     const pageId = req.params['pageId'];
-    //     const newOrder = req.body.elems;
-    //     // console.log(newOrder);
-    //     for(var i in newOrder) {
-    //         for(var j in widgets) {
-    //             if(widgets[j]._id === newOrder[i]) {
-    //                 widgets[j].index = i;
-    //             }
-    //         }
-    //     }
-    //     res.sendStatus(200);
-    // }
-    
+
     function sortWidget(req, res) {
         var pageId = req.params.pageId;
         var pageWidgets = [];
@@ -123,6 +109,7 @@ module.exports = function(app){
         res.redirect(callbackUrl);
 
     }
+
 
     function createWidget(req, res) {
         var pid = req.params.pageId;

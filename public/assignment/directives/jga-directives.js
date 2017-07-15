@@ -39,7 +39,7 @@
             scope : {
                 callback : '&'
             },
-            link : linker,
+            link : linker
         };
         return directive;
     }

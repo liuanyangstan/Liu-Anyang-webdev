@@ -30,15 +30,6 @@
         };
         return services;
 
-        // var services = {
-        //     'createWidget': createWidget,
-        //     'findWidgetsByPageId': findWidgetsByPageId,
-        //     'findWidgetById': findWidgetById,
-        //     'updateWidget': updateWidget,
-        //     'deleteWidget': deleteWidget,
-        // };
-        // return services;
-
 
         function createHeaderWidget(widgetId, pageId, widget) {
             return {
@@ -128,14 +119,6 @@
                 .then(function (response) {
                     return response.data;
                 });
-
-            // results = [];
-            // function filterByPageId(widget) {
-            //     return widget.pageId == pageId;
-            // }
-            //
-            // results = widgets.filter(filterByPageId);
-            // return results;
         }
 
         function findWidgetById(widgetId) {
@@ -144,14 +127,6 @@
                 .then(function (response) {
                     return response.data;
                 });
-
-            // for (w in widgets) {
-            //     var widget = widgets[w];
-            //     if (parseInt(widget._id) === parseInt(widgetId)) {
-            //         return widget;
-            //     }
-            // }
-            // return null;
         }
 
         function updateWidget(widgetId, widget) {
@@ -160,25 +135,7 @@
                 .then(function (response) {
                     return response.data;
                 });
-
-            // var oldWidget = findWidgetById(widgetId);
-            // var index = widgets.indexOf(oldWidget);
-            // if(oldWidget.widgetType != widget.widgetType) {
-            //     return;
-            // }
-            // Object.keys(widget).forEach(function(property){
-            //     if(property == '_id' || property == 'widgetType' || property == 'pageId') {
-            //         return;
-            //     }
-            //     if(oldWidget.hasOwnProperty(property)) {
-            //         oldWidget[property] = widget[property];
-            //     }
-            // });
         }
-
-        // function getAllWidgetTypes() {
-        //     return widgetTypes;
-        // }
 
         function deleteWidget(widgetId) {
             var url = "/api/widget/" + widgetId;
