@@ -6,7 +6,8 @@ module.exports = function (app) {
     var connectionString = null;
 
     if (process.env.MONGODB_URI) {
-        connectionString = 'mongodb://liuanyangstan@gmail.com:lay19911130@ds137891.mlab.com:37891/heroku_kn9tg11s';
+        // connectionString = 'mongodb://liuanyangstan@gmail.com:lay19911130@ds137891.mlab.com:37891/heroku_kn9tg11s';
+        connectionString = 'mongodb://heroku_kn9tg11s:kcud6ujpp73mo6auo0rgr9m280@ds137891.mlab.com:37891/heroku_kn9tg11s';
     }
     else
     {
