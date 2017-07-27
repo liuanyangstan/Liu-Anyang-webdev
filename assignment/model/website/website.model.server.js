@@ -1,0 +1,88 @@
+/**
+ * Created by stan on 7/21/17.
+ */
+
+module.exports = function (mongoose, userModel) {
+    var websiteSchema = require('./website.schema.server')(mongoose);
+    var websiteModel = mongoose.model('websiteModel', websiteSchema);
+
+    var api = {
+        'createWebsiteForUser' : createWebsiteForUser,
+        'findAllWebsitesForUser' : findAllWebsiteForUser,
+        'findWebsiteById' : findWebsiteById,
+        'updateWebsite' : updateWebsite,
+        'removePageFromWebsite' : removePageFromWebsite,
+        'deleteWebsite' : deleteWebsite,
+        'findAllWebsites' : findAllWebsites,
+        'addPageToWebsite' : addPageToWebsite
+    };
+
+    return api;
+
+    function createWebsiteForUser(userId, website) {
+        website._user = userId;
+        return websiteModel
+            .create(website)
+            .then(
+                function (website) {
+                    return userModel
+                        .addWebsiteForUser(userId, website._id);
+                });
+    }
+
+    function findAllWebsiteForUser(userId) {
+        return websites = websiteModel
+            .find({_user : userId})
+            .populate('_user')
+            .exec();
+    }
+    
+    function findWebsiteById(websiteId) {
+        return websiteModel.findOne({_id: websiteId});
+    }
+
+    function updateWebsite(websiteId, website) {
+        return websiteModel.update({
+            _id : websiteId
+        }, {
+            name : website.name,
+            description : website.description
+        });
+    }
+
+    function removePageFromWebsite(websiteId, pageId) {
+        websiteModel
+            .findOne({_id: websiteId})
+            .then(
+                function (website) {
+                    website.pages.pull(pageId);
+                    website.save();
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
+    }
+
+    function addPageToWebsite(websiteId, pageId) {
+        return websiteModel
+            .findOne({_id: websiteId})
+            .then(
+                function (website) {
+                    website.pages.push(pageId);
+                    return website.save();
+                });
+    }
+    
+    function deleteWebsite(websiteId) {
+        var userId = websiteModel.findOne({_id: websiteId})._user;
+        
+        return websiteModel.remove({
+            _id: websiteId
+        });
+    }
+    
+    function findAllWebsites() {
+        return websiteModel.find();
+    }
+};
