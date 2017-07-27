@@ -64,7 +64,6 @@
             .then(function (widgets) {
                 vm.widgets = widgets;
             });
-
     }
 
     function CreateWidgetController($routeParams, $location, WidgetService) {
@@ -93,13 +92,16 @@
                 }
             }
             var newWidget = {
-                name: vm.widgetName,
+                name: vm.widget.name,
                 text: vm.widget.text,
                 widgetType: vm.widgetType,
                 pageId: vm.pid,
                 size: vm.widget.size,
                 width: vm.widget.width,
-                url: vm.widget.url
+                url: vm.widget.url,
+                rows: vm.widget.rows,
+                placeholder: vm.widget.placeholder,
+                formatted: vm.widget.formatted
             };
             if(newWidget === null || newWidget === undefined) {
                 vm.createError = "no valid";
@@ -123,15 +125,6 @@
         vm.editWidget = editWidget;
         vm.deleteWidget = deleteWidget;
 
-        // function init() {
-        //     WidgetService
-        //         .findWidgetsByPageId(vm.pid)
-        //         .then(function (widgets) {
-        //             vm.widgets = widget;
-        //         })
-        // }
-        // init();
-
         WidgetService
             .findWidgetById(vm.wgid)
             .then(function (widget) {
@@ -151,6 +144,14 @@
                    vm.widgetText = vm.widget.text;
                    vm.widgetUrl = vm.widget.url;
                    vm.widgetWidth = vm.widget.width;
+               } else if (vm.widget.widgetType === "HTML") {
+                   vm.widgetName = vm.widget.name;
+                   vm.widgetText = vm.widget.text;
+               } else if (vm.widget.widgetType === "TEXT") {
+                   vm.widgetText = vm.widget.text;
+                   vm.widgetRows = vm.widget.rows;
+                   vm.widgetPlaceholder = vm.widget.placeholder;
+                   vm.widgetFormatted = vm.widget.formatted;
                }
             });
 
@@ -177,6 +178,14 @@
                 vm.widgetText = vm.widget.text;
                 vm.widgetUrl = vm.widget.url;
                 vm.widgetWidth = vm.widget.width;
+            } else if (vm.widget.widgetType === "HTML") {
+                vm.widgetName = vm.widget.name;
+                vm.widgetText = vm.widget.text;
+            } else if (vm.widget.widgetType === "TEXT") {
+                vm.widgetText = vm.widget.text;
+                vm.widgetRows = vm.widget.rows;
+                vm.widgetPlaceholder = vm.widget.placeholder;
+                vm.widgetFormatted = vm.widget.formatted;
             }
         }
 
@@ -190,9 +199,13 @@
                 widgetType: vm.widget.widgetType,
                 size: vm.widgetSize,
                 width: vm.widgetWidth,
-                url: vm.widgetUrl
+                url: vm.widgetUrl,
+                rows: vm.widgetRows,
+                placeholder: vm.widgetPlaceholder,
+                formatted: vm.widgetFormatted
             };
 
+            console.log(latestData);
             WidgetService
                 .updateWidget(vm.wgid, latestData)
                 .then(function () {

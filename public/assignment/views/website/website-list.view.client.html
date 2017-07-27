@@ -17,10 +17,10 @@
 <div class="container">
     <ul class="list-group cl-list-item-borderless">
         <li ng-repeat="website in model.website" class="list-group-item cl-list-item-borderless">
-            <a href="#!/user/{{website.developerId}}/website/{{website._id}}">
+            <a href="#!/user/{{model.uid}}/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
-            <a href="#!/user/{{website.developerId}}/website/{{website._id}}/page">
+            <a href="#!/user/{{model.uid}}/website/{{website._id}}/page">
                 {{website.name}}
             </a>
         </li>

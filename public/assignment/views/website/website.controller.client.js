@@ -11,8 +11,7 @@
     function WebsiteListController($routeParams, $location, WebsiteService) {
         var vm = this;
         vm.uid = $routeParams.uid;
-        // vm.editWebsite = editWebsite;
-        
+
         function init () {
             WebsiteService
                 .findWebsitesByUser(vm.uid)
@@ -23,11 +22,6 @@
         }
 
         init();
-        
-        // function editWebsite(wid) {
-        //     vm.websiteId = wid;
-        //     $location.url("/website/" + wid);
-        // }
 
     }
 
@@ -54,7 +48,7 @@
             } else {
                 var newWebsite = {
                     name: name,
-                    desc: desc
+                    description: desc
                 };
                 WebsiteService
                     .createWebsite(vm.uid, newWebsite)
