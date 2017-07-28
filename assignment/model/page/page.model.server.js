@@ -54,9 +54,12 @@ module.exports = function (mongoose, websiteModel) {
     function deletePage(pageId) {
         var websiteId = pageModel.findOne({_id: pageId})._website;
 
-        return pageModel.remove({
-            _id: pageId
-        });
+        return pageModel
+            .remove({_id: pageId})
+            .then(function (status) {
+                return websiteModel
+                    .removePageFromWebsite(websiteId, pageId);
+            });
     }
     
     function removeWidgetFromPage(pageId, widgetId) {

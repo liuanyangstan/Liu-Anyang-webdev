@@ -51,6 +51,18 @@ module.exports = function (mongoose, pageModel) {
             .find({_page : pageId})
             .populate('_page')
             .exec();
+
+        //find widgets in page.widgets.
+        // return pageModel
+        //     .findPageById(pageId)
+        //     .populate('widgets')
+        //     .then(
+        //         function (page) {
+        //             console.log(page.widgets);
+        //             return page.widgets;
+        //         }
+        //     )
+
     }
 
     function findWidgetById(widgetId) {
@@ -84,9 +96,13 @@ module.exports = function (mongoose, pageModel) {
     function deleteWidget(widgetId) {
         var pageId = widgetModel.findOne({_id: widgetId})._page;
 
-        return widgetModel.remove({
-            _id: widgetId
-        });
+        return widgetModel
+            .remove({_id: widgetId})
+            .then(function (status) {
+                    return pageModel
+                        .removeWidgetFromPage(pageId, widgetId);
+                })
+
     }
     
     function reorderWidget(pageId, start, end) {
