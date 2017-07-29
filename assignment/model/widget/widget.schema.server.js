@@ -32,7 +32,6 @@ module.exports = function (mongoose) {
                 type : Date,
                 default: Date.now
             }
-            // index : Number
     }, {collection : 'widget'});
 
     return widgetSchema;

@@ -44,26 +44,6 @@ module.exports = function(app, models){
                     res.sendStatus(400).send(error);
                 }
             )
-        // var pageWidgets = [];
-        // for(wi in widgets) {
-        //     var widget = widgets[wi];
-        //     if(parseInt(widget.pageId) === parseInt(pageId)) {
-        //         pageWidgets.push(widget);
-        //     }
-        // }
-        //
-        // var index1 = req.query.start;
-        // var index2 = req.query.end;
-        //
-        // var start = widgets.indexOf(pageWidgets[index1]);
-        // var end = widgets.indexOf(pageWidgets[index2]);
-        //
-        // if(index1 && index2) {
-        //     widgets.splice(end, 0, widgets.splice(start, 1)[0]);
-        //     res.sendStatus(200);
-        //     return;
-        // }
-        // res.sendStatus(404).send("cannot be reorder");
     }
 
 
@@ -76,6 +56,10 @@ module.exports = function(app, models){
 
         var width = req.body.width;
         var myFile = req.file;
+
+        if(myFile === undefined || myFile === null) {
+            return;
+        }
 
         var originalname = myFile.originalname;   //file name on user's computer
         var filename = myFile.filename;           //new file name in upload folder

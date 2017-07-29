@@ -25,7 +25,6 @@ module.exports = function (mongoose, pageModel) {
             widget.size = -1;
         }
         widget._page = pageId;
-        // widget.index = generateIn(pageId);
 
         return widgetModel
             .create(widget)
@@ -35,22 +34,9 @@ module.exports = function (mongoose, pageModel) {
                         .addWidgetToPage(pageId, widget._id);
                 });
 
-        //find the latest index
-        // function generateIn(pageId) {
-        //     var widgets = findAllWidgetsForPage(pageId);
-        //     var max_Index = 0;
-        //     for (var w in widgets){
-        //         max_Index = Math.max(max_Index, w.index);
-        //     }
-        //     return max_Index + 1;
-        // }
     }
     
     function findAllWidgetsForPage(pageId) {
-        // return widgets = widgetModel
-        //     .find({_page : pageId})
-        //     .populate('_page')
-        //     .exec();
 
         //find widgets in page.widgets.
         return pageModel

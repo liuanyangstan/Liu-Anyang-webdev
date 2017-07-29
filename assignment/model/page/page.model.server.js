@@ -18,7 +18,6 @@ module.exports = function (mongoose, websiteModel) {
     
     return api;
     
-    
     function createPage(websiteId, page) {
         page._website = websiteId;
         return pageModel
