@@ -47,21 +47,21 @@ module.exports = function (mongoose, pageModel) {
     }
     
     function findAllWidgetsForPage(pageId) {
-        return widgets = widgetModel
-            .find({_page : pageId})
-            .populate('_page')
-            .exec();
+        // return widgets = widgetModel
+        //     .find({_page : pageId})
+        //     .populate('_page')
+        //     .exec();
 
         //find widgets in page.widgets.
-        // return pageModel
-        //     .findPageById(pageId)
-        //     .populate('widgets')
-        //     .then(
-        //         function (page) {
-        //             console.log(page.widgets);
-        //             return page.widgets;
-        //         }
-        //     )
+        return pageModel
+            .findPageById(pageId)
+            .populate('widgets')
+            .then(
+                function (page) {
+                    console.log(page.widgets);
+                    return page.widgets;
+                }
+            )
 
     }
 
