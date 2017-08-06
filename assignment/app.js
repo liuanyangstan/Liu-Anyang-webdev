@@ -16,3 +16,5 @@ module.exports = function(app){
     require("./services/page.service.server")(app, models);
     require("./services/widget.service.server")(app, models);
 };
+
+console.log("server side app.js is running");

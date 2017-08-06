@@ -15,34 +15,48 @@ module.exports = function(mongoose){
         'updateUser' : updateUser,
         'removeWebsiteFromUser' : removeWebsiteFromUser,
         'addWebsiteForUser' : addWebsiteForUser,
-        'deleteUser' : deleteUser
+        'deleteUser' : deleteUser,
+        'updateUserPassword': updateUserPassword,
+        'findUserByGoogleId': findUserByGoogleId
     };
 
     return api;
 
+    //helper functions
+    function updateUserPassword(userId, user){
+        return userModel.update({
+            _id : userId
+        }, {
+            password: user.password
+        });
+    }
+
+
     // Function Definition Section
 
     function createUser(user){
-        var newUser = {
-            username : user.username,
-            password : user.password,
-            websites : []
-        };
-
-        if(user.firstName){
-            newUser.firstName = user.firstName;
-        }
-        if(user.lastName){
-            newUser.lastName = user.lastName;
-        }
-        if(user.email){
-            newUser.email = user.email;
-        }
-        if(user.phone){
-            newUser.phone = user.phone;
-        }
-
-        return userModel.create(newUser);
+        user.websites = [];
+        return userModel.create(user);
+        // var newUser = {
+        //     username : user.username,
+        //     password : user.password,
+        //     websites : []
+        // };
+        //
+        // if(user.firstName){
+        //     newUser.firstName = user.firstName;
+        // }
+        // if(user.lastName){
+        //     newUser.lastName = user.lastName;
+        // }
+        // if(user.email){
+        //     newUser.email = user.email;
+        // }
+        // if(user.phone){
+        //     newUser.phone = user.phone;
+        // }
+        //
+        // return userModel.create(newUser);
     }
 
     function findUserById(userId){
@@ -78,8 +92,11 @@ module.exports = function(mongoose){
             .findOne({_id: userId})
             .then(
                 function(user){
-                    user.websites.pull(websiteId);
-                    user.save();
+                    var index = user.websites.indexOf(websiteId);
+                    user.websites.splice(index, 1);
+                    return user.save();
+                    // user.websites.pull(websiteId);
+                    // user.save();
                 },
                 function(error){
                     console.log(error);
@@ -92,13 +109,17 @@ module.exports = function(mongoose){
     }
     
     function addWebsiteForUser(userId, websiteId) {
-        console.log("added!");
+        // console.log("added!");
         return userModel
             .findOne({_id: userId})
             .then(function (user) {
                     user.websites.push(websiteId);
                     return user.save();
                 });
+    }
+    
+    function findUserByGoogleId(googleId) {
+        return userModel.findOne({'google.id': googleId});
     }
     
     function deleteUser(userId){

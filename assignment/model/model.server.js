@@ -16,6 +16,7 @@ module.exports = function (app) {
 
     var mongoose = require('mongoose');
     mongoose.connect(connectionString, {useMongoClient : true});
+    mongoose.Promise = require('q').Promise;
 
     var userModel = require('./user/user.model.server')(mongoose);
     var websiteModel = require("./website/website.model.server")(mongoose, userModel);
@@ -30,5 +31,6 @@ module.exports = function (app) {
     };
 
     return models;
-
 };
+
+console.log("models.server js is running");

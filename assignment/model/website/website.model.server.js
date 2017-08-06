@@ -55,7 +55,9 @@ module.exports = function (mongoose, userModel) {
             .findOne({_id: websiteId})
             .then(
                 function (website) {
-                    website.pages.pull(pageId);
+                    var index = website.pages.indexOf(pageId);
+                    website.pages.splice(index, 1);
+                    // website.pages.pull(pageId);
                     website.save();
                 },
                 function (error) {
@@ -74,12 +76,15 @@ module.exports = function (mongoose, userModel) {
                 });
     }
     
-    function deleteWebsite(websiteId) {
-        var userId = websiteModel.findOne({_id: websiteId})._user;
-        
-        return websiteModel.remove({
-            _id: websiteId
-        });
+    function deleteWebsite(userId, websiteId) {
+        return websiteModel
+            .remove({_id: websiteId})
+            .then(
+                function (status) {
+                    return userModel
+                        .removeWebsiteFromUser(userId, websiteId);
+                }
+            );
     }
     
     function findAllWebsites() {

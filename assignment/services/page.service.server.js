@@ -17,8 +17,7 @@ module.exports = function (app, models) {
     app.put('/api/page/:pageId',updatePage);
 
     //DELETE Calls
-    app.delete('/api/page/:pageId',deletePage);
-
+    app.delete('/api/website/:websiteId/page/:pageId', deletePage);
 
     /*API calls implementation*/
     function createPage(req, res) {
@@ -93,11 +92,12 @@ module.exports = function (app, models) {
     }
 
     function deletePage(req, res) {
+        var wid = req.params.websiteId;
         var pid = req.params.pageId;
 
         if(pid){
             model
-                .deletePage(pid)
+                .deletePage(wid, pid)
                 .then(
                     function (status){
                         res.sendStatus(200);

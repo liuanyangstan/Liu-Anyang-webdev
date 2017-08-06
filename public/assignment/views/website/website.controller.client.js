@@ -8,9 +8,10 @@
         .controller("NewWebsiteController", NewWebsiteController)
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function WebsiteListController($routeParams, $location, WebsiteService) {
+    function WebsiteListController($routeParams, loggedin, WebsiteService) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
 
         function init () {
             WebsiteService
@@ -25,9 +26,10 @@
 
     }
 
-    function NewWebsiteController($routeParams, WebsiteService, $location) {
+    function NewWebsiteController($routeParams, WebsiteService, $location, loggedin) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
 
         //event handlers
         vm.createWebsite = createWebsite;
@@ -54,7 +56,8 @@
                     .createWebsite(vm.uid, newWebsite)
                     .then(
                         function (response) {
-                            $location.url("/user/" + vm.uid + "/website");
+                            // $location.url("/user/" + vm.uid + "/website");
+                            $location.url("/website");
                         },
                         function (error) {
                             vm.error = "Unable to create";
@@ -65,9 +68,10 @@
 
     }
 
-    function EditWebsiteController($routeParams, WebsiteService, $location) {
+    function EditWebsiteController($routeParams, WebsiteService, $location, loggedin) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
         vm.wid = $routeParams.wid;
 
         //event handlers
@@ -99,7 +103,8 @@
                     .updateWebsite(vm.wid, website)
                     .then(
                         function (response) {
-                            $location.url('/user/' + vm.uid + '/website');
+                            // $location.url('/user/' + vm.uid + '/website');
+                            $location.url('/website');
                         },
                         function (error) {
                             vm.error = "Cannot update the website!";
@@ -111,10 +116,10 @@
 
         function deleteWebsite(websiteId) {
             WebsiteService
-                .deleteWebsite(websiteId)
+                .deleteWebsite(vm.uid, websiteId)
                 .then(
                     function (response) {
-                        $location.url('/user/' + vm.uid + '/website');
+                        $location.url('/website');
                     },
                     function (error) {
                         vm.error = "Unable to delete!";

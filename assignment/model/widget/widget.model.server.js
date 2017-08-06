@@ -78,16 +78,15 @@ module.exports = function (mongoose, pageModel) {
             formatted: widget.formatted
         });
     }
-    
-    function deleteWidget(widgetId) {
-        var pageId = widgetModel.findOne({_id: widgetId})._page;
+
+    function deleteWidget(pageId, widgetId) {
 
         return widgetModel
             .remove({_id: widgetId})
             .then(function (status) {
-                    return pageModel
-                        .removeWidgetFromPage(pageId, widgetId);
-                })
+                return pageModel
+                    .removeWidgetFromPage(pageId, widgetId);
+            })
 
     }
     

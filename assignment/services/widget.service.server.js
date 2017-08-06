@@ -21,7 +21,7 @@ module.exports = function(app, models){
     app.put('/api/widget/:widgetId', updateWidget);
 
     //DELETE Calls.
-    app.delete('/api/widget/:widgetId', deleteWidget);
+    app.delete('/api/page/:pageId/widget/:widgetId', deleteWidget);
 
     //Sort
     app.put('/api/page/:pageId/widget', reorderWidgets);
@@ -59,7 +59,7 @@ module.exports = function(app, models){
 
         if(myFile === undefined || myFile === null) {
             return;
-        }
+        }           //If doesn't upload the file, it cannot click the upload button
 
         var originalname = myFile.originalname;   //file name on user's computer
         var filename = myFile.filename;           //new file name in upload folder
@@ -121,7 +121,7 @@ module.exports = function(app, models){
                 )
         }
 
-        var callbackUrl = "/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/";
+        var callbackUrl = "/#!/website/" + websiteId + "/page/" + pageId + "/widget";
         res.redirect(callbackUrl);
     }
 
@@ -199,11 +199,12 @@ module.exports = function(app, models){
     }
 
     function deleteWidget(req, res) {
+        var pageId = req.params.pageId;
         var widgetId = req.params.widgetId;
 
         if(widgetId){
             model
-                .deleteWidget(widgetId)
+                .deleteWidget(pageId, widgetId)
                 .then(
                     function (status){
                         res.sendStatus(200);

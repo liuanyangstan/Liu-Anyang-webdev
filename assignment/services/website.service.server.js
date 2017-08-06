@@ -19,7 +19,7 @@ module.exports = function(app, models){
     app.put('/api/website/:websiteId',updateWebsite);
 
     //DELETE Calls
-    app.delete('/api/website/:websiteId',deleteWebsite);
+    app.delete('/api/user/:userId/website/:websiteId', deleteWebsite);
 
 
     /*API calls implementation*/
@@ -33,22 +33,6 @@ module.exports = function(app, models){
                 res.json(website);
             });
 
-        // model
-        //     .createWebsiteForUser(uid, website)
-        //     .then(
-        //         function (website) {
-        //             if(website) {
-        //                 console.log(website);
-        //                 res.json(website);
-        //             } else {
-        //                 website = null;
-        //                 res.send(website);
-        //             }
-        //         },
-        //         function (error) {
-        //             res.sendStatus(400).send("something wrong....");
-        //         }
-        //     )
     }
 
     function findAllWebsitesForUser(req, res) {
@@ -109,11 +93,12 @@ module.exports = function(app, models){
     }
 
     function deleteWebsite(req, res) {
+        var uid = req.params.userId;
         var wid = req.params.websiteId;
 
         if(wid){
             model
-                .deleteWebsite(wid)
+                .deleteWebsite(uid, wid)
                 .then(
                     function (status){
                         res.sendStatus(200);

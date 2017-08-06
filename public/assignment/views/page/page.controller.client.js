@@ -8,9 +8,10 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
 
-    function PageListController($routeParams, WebsiteService ,PageService) {
+    function PageListController($routeParams, PageService, loggedin) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
         vm.wid = $routeParams.wid;
         
         
@@ -32,9 +33,10 @@
         init();
     }
 
-    function NewPageController($routeParams, PageService, $location) {
+    function NewPageController($routeParams, PageService, $location, loggedin) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
         vm.wid = $routeParams.wid;
 
         //event handlers
@@ -70,7 +72,7 @@
                     .createPage(vm.wid, newPage)
                     .then(
                         function (response) {
-                            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                            $location.url('/website/' + vm.wid + '/page');
                         },
                         function (error) {
                             vm.error = "Failed to create";
@@ -81,9 +83,10 @@
 
     }
 
-    function EditPageController($routeParams, WebsiteService, PageService, $location) {
+    function EditPageController($routeParams, WebsiteService, PageService, $location, loggedin) {
         var vm = this;
-        vm.uid = $routeParams.uid;
+        // vm.uid = $routeParams.uid;
+        vm.uid = loggedin._id;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
@@ -102,7 +105,7 @@
             .then(function (page) {
                 vm.page = page;
             });
-
+        
         //implementation
         function updatePage(page) {
             if(!page || !page.name) {
@@ -112,7 +115,7 @@
                     .updatePage(vm.pid, page)
                     .then(
                         function (response) {
-                            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                            $location.url('/website/' + vm.wid + '/page');
                         },
                         function (error) {
                             vm.error = "Cannot update the page!";
@@ -124,10 +127,10 @@
         function deletePage(pageId) {
 
             PageService
-                .deletePage(pageId)
+                .deletePage(vm.wid, pageId)
                 .then(
                     function (response) {
-                        $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page');
+                        $location.url('/website/' + vm.wid + '/page');
                     },
                     function (error) {
                         vm.error = "Unable to delete!";

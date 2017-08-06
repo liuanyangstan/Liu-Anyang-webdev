@@ -50,8 +50,7 @@ module.exports = function (mongoose, websiteModel) {
         });
     }
 
-    function deletePage(pageId) {
-        var websiteId = pageModel.findOne({_id: pageId})._website;
+    function deletePage(websiteId, pageId) {
 
         return pageModel
             .remove({_id: pageId})
@@ -66,7 +65,8 @@ module.exports = function (mongoose, websiteModel) {
             .findById(pageId)
             .then(
                 function (page) {
-                    page.widgets.pull(widgetId);
+                    var index = page.widgets.indexOf(widgetId);
+                    page.widgets.splice(index, 1);
                     page.save();
                 },
                 function (error) {

@@ -45,7 +45,7 @@
             WidgetService
                 .updateWidget(vm.wgid, widget)
                 .then(function (response) {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.wgid);
+                    $location.url("/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.wgid);
                 }
                 ,function (err) {
                         vm.error = err.data;
