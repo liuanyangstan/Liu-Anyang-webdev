@@ -33,8 +33,8 @@ module.exports = function(app, models){
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/#/profile',
-            failureRedirect: '/#/login'
+            successRedirect: '/#!/profile',
+            failureRedirect: '/#!/login'
         }));
 
     app.use(session({
@@ -67,6 +67,7 @@ module.exports = function(app, models){
                         var emailParts = email.split("@");
                         var newGoogleUser = {
                             username:  emailParts[0],
+                            password: "0",
                             firstName: profile.name.givenName,
                             lastName:  profile.name.familyName,
                             email:     email,
@@ -75,6 +76,7 @@ module.exports = function(app, models){
                                 token: token
                             }
                         };
+                        // console.log(newGoogleUser);
                         return model.createUser(newGoogleUser);
                     }
                 },
