@@ -1,0 +1,61 @@
+<div id='over'></div>
+<div id="polina">
+    <div class="top-navbar">
+        <div class="col-xs-3 ho-logo">
+            <div class="food-finder-text"><a href="#!/">FoodFinder</a></div>
+        </div>
+
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6 toggle-padding">
+
+            <div ng-hide="model.currentUser == '0'|| model.currentUser.username == null
+                    || model.currentUser == undefined" class="ho-negative-margin">
+                <div class="dropdown pull-right ho-dropdown-padding">
+
+                    <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                            type="button" data-toggle="dropdown">
+                        <span class="ho-button-text">{{model.currentUser.username}}</span>
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu nav-dropdown-menu">
+                        <li><a href="#!/user">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            User Dashboard</a>
+                        </li>
+                        <li><a href="#!/user/profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#!/logout">Logout</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div ng-hide="model.currentUser!='0' && model.currentUser!=null
+                    && model.currentUser!=undefined" class="ho-negative-margin ho-nav-buttons">
+                <a href="#!/login" class="btn btn-danger ho-login-btn pull-right">Member Login</a>
+                &nbsp;&nbsp;<a href="#!/register" class="btn btn-danger pull-right hide-on-mobile">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="centered">
+
+        <div class="msk-search-bar">
+
+            <div class="map">
+                <iframe width="600" height="450" frameborder="0" style="border:0"
+                        position="relative"
+                        ng-src="{{model.checkSafeUrl4()}}"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="col-xs-1">
+            <a href="#!/" class="navbar-brand ho-left" style="margin-left: 0px;">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
+            <a class="navbar-brand">
+                <div class="food-finder-text3 cl-text-red">FoodFinder</div>
+            </a>
+        </div>
+        <div class="col-xs-6 toggle-padding">
+            <a href="#!/login" class="btn btn-danger ho-nav-buttons">Login</a>
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="col-sm-2 col-xs-1">
+        </div>
+
+        <div ng-show="model.currentUser.userType==undefined" class="col-sm-8 col-xs-10">
+            <h2>Register</h2>
+            <hr>
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{model.errorMessage}}
+            </div>
+            <label for ="firstName">First Name</label>
+            <input ng-model="user.firstName"
+                   type="text"
+                   id="firstName"
+                   class="form-control"
+                   placeholder="firstName"/>
+            <label for ="lastName">Last Name</label>
+            <input ng-model="user.lastName"
+                   type="text"
+                   id="lastName"
+                   class="form-control"
+                   placeholder="lastName"/>
+            <label for ="email">E-mail</label>
+            <input ng-model="user.email"
+                   type="email"
+                   id="email"
+                   class="form-control"
+                   placeholder="email@mail.com"/>
+
+            <label for ="username">Username</label>
+            <input ng-model="user.username"
+                   type="text"
+                   id="username"
+                   class="form-control"
+                   placeholder="username"/>
+
+            <label for ="password">Password</label>
+            <input ng-model="user.password"
+                   type="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="password"/>
+
+            <label for ="retypepassword">Verify Password</label>
+            <input ng-model="user.retypepassword"
+                   type="password"
+                   id="retypepassword"
+                   class="form-control"
+                   placeholder="Verify Password"/>
+
+            <div class="ho-buttons-margin">
+                <a class="btn btn-success btn-block"
+                   ng-click="model.register(user)">Register</a>
+                <a class="btn btn-danger  btn-block"
+                   href="#!/login">Cancel</a>
+            </div>
+        </div>
+
+        <div class="col-sm-2 col-xs-1">
+        </div>
+    </div>
+
+</div>

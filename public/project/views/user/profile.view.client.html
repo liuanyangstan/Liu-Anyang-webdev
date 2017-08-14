@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="col-xs-1">
+            <a href="#!/user" class="navbar-brand ho-left">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
+            <a class="navbar-brand" href="#!/">
+                <div class="food-finder-text3 cl-text-red">FoodFinder</div>
+            </a>
+        </div>
+
+        <div class="col-xs-6 toggle-padding">
+            <div class="dropdown pull-right ho-dropdown-padding">
+                <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                        type="button" data-toggle="dropdown">
+                    <span class="ho-button-text">{{model.currentUser.username}}</span>
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu nav-dropdown-menu">
+                    <li><a href="#!/user">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        User Dashboard</a>
+                    </li>
+                    <li><a href="#!/profile">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#!/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="ho-dashboard-greeting">
+            Have a Nice Day :)
+        </div>
+
+
+        <div class="row">
+            <h3 class="ho-board-heading cl-text-black">Profile</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-xs-1">
+            </div>
+            <div class="col-sm-8 col-xs-10">
+                <div ng-show="model.successMessage" class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-ok-circle msk-msg-glyphicon" aria-hidden="true"></span>
+                    <span class="sr-only">Profile:</span>
+                    {{model.successMessage}}
+                </div>
+
+                <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{model.errorMessage}}
+                </div>
+
+                <button ng-if="model.user.isAdmin" class="btn btn-block btn-warning">
+                    If you are seeing this, you are login as an Admin</button>
+
+                <label for ="firstName">First Name</label>
+                <input ng-model="model.user.firstName"
+                       type="text"
+                       id="firstName"
+                       class="form-control"
+                       placeholder="firstName"/>
+                <label for ="lastName">Last Name</label>
+                <input ng-model="model.user.lastName"
+                       type="text"
+                       id="lastName"
+                       class="form-control"
+                       placeholder="lastName"/>
+                <label for ="email">E-mail</label>
+                <input ng-model="model.user.email"
+                       type="email"
+                       id="email"
+                       class="form-control"
+                       placeholder="email"/>
+
+                <label for ="username">Username</label>
+                <input ng-model="model.user.username"
+                       type="text"
+                       id="username"
+                       class="form-control"
+                       placeholder="username"
+                       disabled/>
+
+                <label for ="password">Password</label>
+                <input ng-model="model.user.password"
+                       type="password"
+                       id="password"
+                       class="form-control"
+                       placeholder="password"/>
+
+                <label for ="retypepassword">Retype Password</label>
+                <input ng-model="model.user.retypepassword"
+                       type="password"
+                       id="retypepassword"
+                       class="form-control"
+                       placeholder="Retype Password"/>
+
+                <label for ="admin">Admin</label>
+                <input ng-model="model.user.isAdmin"
+                       type="checkbox"
+                       id="admin"/>
+
+                <div class="ho-buttons-margin">
+                    <a class="btn btn-success btn-block"
+                       ng-click="model.updateUser(model.user)">Update</a>
+                    <a class="btn btn-danger  btn-block"
+                       href="#!/user">Cancel</a>
+                    <a class="btn btn-danger btn-block"
+                       ng-click="model.deleteUser(model.user)">Unregister</a>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-1">
+            </div>
+        </div>
+    </div>
+</div>

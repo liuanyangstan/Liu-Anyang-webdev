@@ -1,0 +1,583 @@
+.cl-text-red {
+    color: #d42d2d;
+}
+
+.food-finder-text2 {
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 41px;
+    font-family: 'Macondo', Sans-Serif, cursive;
+}
+
+.food-finder-text3 {
+    margin-left: -22px;
+    margin-top: 21px;
+    font-size: 41px;
+    font-family: 'Macondo', Sans-Serif, cursive;
+}
+
+body {
+    margin: 0 !important;
+    font-family: 'Lato', sans-serif;
+    background-color: whitesmoke;
+}
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+input:hover{
+    transition: 0.5s;
+}
+
+a:hover{
+    transition: 0.5s;
+}
+
+#polina {
+    font-weight:100;
+    color: white;
+    padding: 2rem;
+    width: 100%;
+}
+
+a:hover{
+    background:rgba(0,0,0,0.9);
+}
+
+#over{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: Black;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+
+
+#ho-home{
+    background-color: black !important;
+}
+
+#ho-home .layer{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    left: 0;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+#ho-home{
+    overflow: hidden;
+}
+
+#infoMenu li a {
+    color: #fff;
+}
+
+
+.top-navbar{
+    text-align: left;
+    margin-left: 10px;
+    color: white;
+}
+
+.food-finder-text{
+    margin-left: 7px;
+    margin-top: -3px;
+    font-size: 41px;
+    font-family: 'Macondo', Sans-Serif, cursive;
+}
+
+
+.msk-caret{
+    vertical-align: middle;
+    margin-top: 8px;
+}
+
+
+.msk-map-marker{
+    margin-top: 2px;
+}
+
+#dropdownMenu1{
+    width: 100%;
+}
+
+.dropdown-menu{
+    width: 100%;
+}
+
+.msk-col-search{
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.msk-greeting-text{
+    color: orangered;
+    padding-left: 50px;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-right: 50px;
+}
+
+#ho-about{
+    background-color: white !important;
+}
+
+.msk-heading{
+    font-size: 25px;
+}
+
+.msk-description > p{
+    font-size: 15px !important;
+}
+
+.ho-features{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.ho-features-heading{
+    font-size: 30px;
+    margin-left: 20px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-style: inset;
+}
+
+
+.ho-logo{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: -15px;
+}
+
+.ho-profile-btn{
+    height: 45px;
+}
+
+.ho-img-circle{
+    width:25px;
+    border-radius: 50%;
+}
+
+.ho-profile-col{
+    margin-left: -20px;
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.badge.pull-right{
+    margin-top: -22px;
+    margin-right: 15px;
+}
+
+.dropdown-menu > li > .glyphicon{
+    color: black;
+}
+
+.greeting-layer{
+    z-index: 3 !important;
+}
+
+.ho-navbar-text{
+    margin-left: 45px !important;
+    margin-top: -27px !important;
+    font-size: 35px !important;
+}
+.ho-navbar-logo{
+    width: 50px !important;
+}
+
+.nav-dropdown-menu{
+    margin-left: -70px;
+}
+
+.centered{
+    margin-top: 135px;
+}
+
+.zero-padding{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.zero-padding-tb{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.ho-main-body{
+    margin-top: 90px !important;
+    margin-bottom: 40px !important;
+}
+
+
+.msk-navbar-header{
+    height: 70px;
+}
+
+.ho-toggle-button{
+    margin-top: 18px;
+}
+
+.navbar-brand{
+    padding-top: 5px;
+}
+.ho-buttons-margin{
+    margin-top: 25px;
+}
+
+.ho-dropdown-padding{
+    padding-top: 10px;
+}
+
+
+.ho-all-padding{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-result{
+    border: 1px black;
+    border-style: solid;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.ho-top-padding{
+    padding-top: 15px;
+}
+.ho-left-padding{
+    padding-left: 15px;
+}
+.ho-right-padding{
+    padding-right: 15px;
+}
+.ho-bottom-padding{
+    padding-top: 15px;
+}
+
+.ho-result-hr{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-style: inset;
+}
+
+.zero-margin{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.ho-result-heading{
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.ho-dashboard-greeting{
+    color: #6d6c3f;
+    padding-left: 25px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding-right: 25px;
+}
+
+a.ho-dashboard-link:hover{
+    text-decoration: none ;
+    background-color: lightgray;
+}
+
+a.ho-dashboard-link {
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    text-align: left;
+    border-radius: 0px !important;
+}
+
+.nav-pills>li{
+    margin-left:0px !important;
+    margin-right:0px !important;
+}
+
+
+.ho-5px-all-padding{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.ho-modal-content{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+
+.ho-menu-li{
+    width: 100%;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    background-color: lightgray;
+}
+
+.ho-loc-input{
+    height:50px;
+}
+
+
+.ho-board-heading{
+    margin-left: 42px;
+    margin-bottom: 13px;
+}
+
+
+.ho-section-heading,
+.ho-section-content{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.ho-section-heading{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover{
+    color: #d9534f;
+    font-weight:600 ;
+}
+
+
+.zero-top-margin{
+    margin-top: 0px!important;
+}
+
+.ho-ul{
+    list-style-type: none;
+    display: -webkit-inline-box;
+}
+
+.ho-ul>li{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ho-list{
+    list-style-type: none;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 2px;
+    width: 50% !important;
+    margin-left:-40px ;
+    padding: 5px;
+}
+
+.ho-top-margin{
+    margin-top: 25px;
+}
+.ho-bottom-margin{
+    margin-bottom: 25px;
+}
+
+.ho-deco{
+    background-color: white;
+    border: 1px solid;
+    border-style: groove;
+    border-top: none;
+}
+
+.left-margin{
+    margin-left: 25px;
+}
+.right-margin{
+    margin-right: 25px;
+}
+
+.ho-margin-left{
+    margin-left: 15px;
+}
+
+.nav-btn{
+    margin-top: 18px;
+    float: right;
+}
+
+#myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#myTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+}
+
+#myTable th, #myTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+
+
+.ho-left{
+    font-size: 35px;
+    float: left;
+    padding-left: 0px;
+    padding-top: 15px;
+}
+
+.ho-nav-buttons{
+    float: right;
+    margin-top: 20px;
+}
+.ho-negative-margin{
+    margin-right: -25px;
+}
+
+.ho-board-heading-fixed{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 60px;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+
+.ho-main-body > div.col-sm-8{
+    padding-bottom: 40px;
+}
+
+a.join-btn:hover{
+    background-color: transparent;
+}
+
+
+.not-active {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+
+.list-padding{
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.friend-info{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    border: 1px solid;
+    margin-right: 17px;
+    margin-left: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border-color: lightgray;
+    background-color: white;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+
+.ho-login-btn{
+    margin-left: 6px;
+}
+
+.ui-helper-hidden-accessible{
+    display: none;
+}
+
+.ho-standard-width{
+    width: 155px !important;
+    max-height: 125px !important;
+}
+
+.ho-input-text{
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin-bottom: -15px;
+}
+
+.ho-date{
+    position: relative;
+    float: right;
+    margin-right: 0px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: lightgray;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 320px) {
+    .msk-greeting-text {
+        font-size: 30px;
+    }
+    .centered {
+        margin-top: 105px;
+    }
+}
+
+
+.map iframe {
+    position: relative;
+    width: 100%;
+    left: 0;
+}

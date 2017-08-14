@@ -1,0 +1,131 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="col-xs-1">
+            <a href="#!/" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
+            <a class="navbar-brand">
+                <div class="food-finder-text3 cl-text-red">FoodFinder</div>
+            </a>
+        </div>
+
+        <div class="col-xs-6 toggle-padding">
+            <div class="dropdown pull-right ho-dropdown-padding">
+                <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                        type="button" data-toggle="dropdown">
+                    <span class="ho-button-text">{{model.currentUser.username}}</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu nav-dropdown-menu">
+                    <li><a href="#!/user">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        User Dashboard</a>
+                    </li>
+                    <li><a href="#!/profile">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#!/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="ho-dashboard-greeting">
+            Eating with joy
+        </div>
+
+        <div class="row ho-dashboard ho-left-padding ho-right-padding">
+
+            <div>
+                <div class="row">
+                    <h3 class="ho-board-heading">
+                        User Dashboard
+                    </h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 ho-bottom-margin">
+                        <div class="row search-result zero-margin">
+                            <ul class="nav nav-pills">
+
+                                <li  class="ho-menu-li">
+                                    <a data-toggle="pill" href="#findfriends"
+                                       target="_self" class="btn ho-dashboard-link">Find Friends
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="tab-content">
+
+                            <div ng-show="model.currentUser._id == model.user._id"
+                                 id="findfriends" class="tab-pane fade search-result">
+                                <div class="ho-section-heading">
+                                    Find Friends
+                                </div>
+
+                                <div class="ho-section-content">
+
+                                    <div class="">
+                                        <h3>Search by Username</h3>
+                                    </div>
+
+                                    <div class="row ho-5px-all-padding">
+                                        <div class="col-xs-9">
+                                            <input ng-model="friend.username"
+                                                   type="text"
+                                                   id="username"
+                                                   class="form-control"
+                                                   placeholder="fuzzy queries"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <a ng-click="model.findFriendByUsername(friend)"
+                                               class="btn btn-block btn-primary ho-5px-all-padding pull-right">Find</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ho-5px-all-padding zero-margin">
+
+                                        <ul class="list-group" ng-show="model.friends">
+                                            <h4>Friends list</h4>
+
+                                            <li class="list-group-item list-group-item-info">
+                                                <div class="row">
+                                                    <div class="col-xs-4">Username</div>
+                                                    <div class="col-xs-6">Email</div>
+                                                    <div class="col-xs-2">Name</div>
+                                                </div>
+                                            </li>
+
+                                            <div ng-show="model.friends&&model.friends.length>0">
+                                                <li ng-if="friend._id!=model.currentUser._id"
+                                                    ng-repeat="friend in model.friends" class="list-group-item">
+                                                    <a href="#!/user">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">{{friend.username}}</div>
+                                                            <div class="col-xs-6">{{friend.email}} </div>
+                                                            <div class="col-xs-2">{{friend.firstName}}</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

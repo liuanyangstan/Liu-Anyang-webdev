@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+        <div class="col-xs-1">
+            <a href="#!/" class="navbar-brand ho-left" style="margin-left: 0px;">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
+                <div class="food-finder-text2 cl-text-red">FoodFinder</div>
+        </div>
+
+        <div class="col-xs-6 toggle-padding">
+            <a href="#!/register" class="btn btn-danger ho-nav-buttons" >Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="col-sm-2 col-xs-1">
+        </div>
+
+        <div ng-show="model.currentUser.userType==undefined" class="col-sm-8 col-xs-10">
+            <h2>Login</h2>
+            <hr>
+
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                {{model.errorMessage}}
+            </div>
+
+            <label for ="username">Username</label>
+            <input ng-model="user.username"
+                   type="text"
+                   id="username"
+                   class="form-control"
+                   placeholder="username@"/>
+
+            <label for ="password">Password</label>
+            <input ng-model="user.password"
+                   type="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="Password@"/>
+
+            <div class="ho-buttons-margin">
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.login(user)" >Login</a>
+
+                <a class="btn btn-danger  btn-block"
+                   href="#!/">Cancel</a>
+
+                <a href="/auth/google" class="btn btn-danger btn-block">
+                    <span class="fa fa-google-plus"></span>
+                    Login with Google
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
