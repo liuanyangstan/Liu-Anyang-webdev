@@ -9,7 +9,7 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl : "home.html",
+                templateUrl : "views/user/login.view.client.html",
                  controller: "LoginController",
                  controllerAs: "model"
             })
